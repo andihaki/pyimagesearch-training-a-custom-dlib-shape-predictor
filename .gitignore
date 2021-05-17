@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# MAC
+.DS_Store
+
+# model
+ibug_300W_large_face_landmark_dataset/
+ibug_300W_large_face_landmark_dataset.*
+
+# venv
+bin/
+
+pyvenv.cfg
