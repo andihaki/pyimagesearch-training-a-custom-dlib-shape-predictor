@@ -26,3 +26,11 @@ python evaluate_shape_predictor.py --predictor eye_predictor.dat \
 
 # predict eye
 python predict_eyes.py --shape-predictor eye_predictor.dat
+
+# other dataset
+- aflw: 21 points https://www.tugraz.at/institute/icg/research/team-bischof/lrs/downloads/aflw/
+- UTKFace: 68 points https://susanqq.github.io/UTKFace/
+- aflw2k3d: 68 points https://www.tensorflow.org/datasets/catalog/aflw2k3d
+- helen: 29 points http://www.f-zhou.com/fa_code.html
+- RMWB: 98 point https://keqiangsun.github.io/projects/FAB/RWMB.html
+- JDlandmark: 106 point https://facial-landmarks-localization-challenge.github.io/
