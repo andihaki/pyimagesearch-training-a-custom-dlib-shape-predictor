@@ -6,8 +6,8 @@ webcam = True
 
 cap = cv2.VideoCapture(0)
 detector = dlib.get_frontal_face_detector()
-# predictor = dlib.shape_predictor("lips_predictor.dat")
-predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+predictor = dlib.shape_predictor("lips_predictor.dat")
+# predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
 def empty(a):
   pass
@@ -159,15 +159,15 @@ while True:
     myPoints = []
     # print(landmarks)
 
-    for n in range(68):
-    # for n in range(19):
+    # for n in range(68):
+    for n in range(19):
       x = landmarks.part(n).x
       y = landmarks.part(n).y
       myPoints.append([x,y])
 
     myPoints = np.array(myPoints)
-    imgLips = createBox(img,myPoints[48:61],3,masked=True,cropped=False)
-    # imgLips = createBox(img,myPoints[0:19],0,masked=True,cropped=False)
+    # imgLips = createBox(img,myPoints[48:61],3,masked=True,cropped=False)
+    imgLips = createBox(img,myPoints[0:19],0,masked=True,cropped=False)
 
     imgColorLips = np.zeros_like(imgLips)
     b = cv2.getTrackbarPos('Blue','makeup')
