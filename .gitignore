@@ -139,3 +139,4 @@ ibug_300W_large_face_landmark_dataset.*
 bin/
 
 pyvenv.cfg
+ignore.md
