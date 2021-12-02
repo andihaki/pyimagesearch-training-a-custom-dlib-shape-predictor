@@ -20,20 +20,20 @@ options = dlib.shape_predictor_training_options()
 # will be *faster* but *less accurate* while larger values will
 # generate trees that are *deeper*, *more accurate*, but will run
 # *far slower* when making predictions
-options.tree_depth = 4
+options.tree_depth = 5
 
 # regularization parameter in the range [0, 1] that is used to help
 # our model generalize -- values closer to 1 will make our model fit
 # the training data better, but could cause overfitting; values closer
 # to 0 will help our model generalize but will require us to have
 # training data in the order of 1000s of data points
-options.nu = 0.1
+options.nu = 0.05
 
 # the number of cascades used to train the shape predictor -- this
 # parameter has a *dramtic* impact on both the *accuracy* and *output
 # size* of your model; the more cascades you have, the more accurate
 # your model can potentially be, but also the *larger* the output size
-options.cascade_depth = 15
+options.cascade_depth = 10
 
 # number of pixels used to generate features for the random trees at
 # each cascade -- larger pixel values will make your shape predictor
@@ -51,7 +51,7 @@ options.num_test_splits = 50
 # the shape predictor -- applies the supplied number of random
 # deformations, thereby performing regularization and increasing the
 # ability of our model to generalize
-options.oversampling_amount = 5
+options.oversampling_amount = 300
 
 # amount of translation jitter to apply -- the dlib docs recommend
 # values in the range [0, 0.5]

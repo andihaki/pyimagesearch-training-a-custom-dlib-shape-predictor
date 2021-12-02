@@ -132,8 +132,13 @@ dmypy.json
 .DS_Store
 
 # model
-ibug_300W_large_face_landmark_dataset/
-ibug_300W_large_face_landmark_dataset.*
+ibug_300W_large_face_landmark_dataset/afw
+ibug_300W_large_face_landmark_dataset/helen
+ibug_300W_large_face_landmark_dataset/ibug
+ibug_300W_large_face_landmark_dataset/ibug-no-mirror
+ibug_300W_large_face_landmark_dataset/lfpw
+ibug_300W_large_face_landmark_dataset/eye_predictor_v1.dat
+
 
 # venv
 bin/

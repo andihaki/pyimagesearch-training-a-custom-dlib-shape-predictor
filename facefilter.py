@@ -94,62 +94,62 @@ while True:
   # print("Estimated frames per second : {0}".format(fps))
   # # ------------- end show fps
 
-  # # -- show fps
-  # import time
-  # # Capture frame-by-frame
-  # # # used to record the time when we processed last frame
-  # # prev_frame_time = 0
+  # -- show fps
+  import time
+  # Capture frame-by-frame
+  # # used to record the time when we processed last frame
+  # prev_frame_time = 0
   
-  # # # used to record the time at which we processed current frame
-  # # new_frame_time = 0
-  # ret, frame = cap.read()
+  # # used to record the time at which we processed current frame
+  # new_frame_time = 0
+  ret, frame = cap.read()
 
-  # # if video finished or no Video Input
-  # if not ret:
-  #     break
+  # if video finished or no Video Input
+  if not ret:
+      break
 
-  # # Our operations on the frame come here
-  # gray = frame
+  # Our operations on the frame come here
+  gray = frame
 
-  # # resizing the frame size according to our need
-  # gray = cv2.resize(gray, (500, 300))
+  # resizing the frame size according to our need
+  gray = cv2.resize(gray, (500, 300))
 
-  # # font which we will be using to display FPS
-  # font = cv2.FONT_HERSHEY_SIMPLEX
-  # # time when we finish processing for this frame
-  # new_frame_time = time.time()
+  # font which we will be using to display FPS
+  font = cv2.FONT_HERSHEY_SIMPLEX
+  # time when we finish processing for this frame
+  new_frame_time = time.time()
 
-  # # Calculating the fps
+  # Calculating the fps
 
-  # # fps will be number of frame processed in given time frame
-  # # since their will be most of time error of 0.001 second
-  # # we will be subtracting it to get more accurate result
-  # # fps = 1/(new_frame_time-prev_frame_time)
-  # fps = 10/(new_frame_time-prev_frame_time)
-  # prev_frame_time = new_frame_time
+  # fps will be number of frame processed in given time frame
+  # since their will be most of time error of 0.001 second
+  # we will be subtracting it to get more accurate result
+  # fps = 1/(new_frame_time-prev_frame_time)
+  fps = 10/(new_frame_time-prev_frame_time)
+  prev_frame_time = new_frame_time
 
-  # # # converting the fps into integer
-  # fps = int(fps)
+  # # converting the fps into integer
+  fps = int(fps)
   
-  # # converting the fps to string so that we can display it on frame
-  # # by using putText function
-  # fps = str(fps)
+  # converting the fps to string so that we can display it on frame
+  # by using putText function
+  fps = str(fps)
 
-  # # putting the FPS count on the frame
-  # cv2.putText(gray, fps, (7, 170), font, 3, (100, 255, 0), 3, cv2.LINE_AA)
+  # putting the FPS count on the frame
+  cv2.putText(gray, fps, (7, 170), font, 3, (100, 255, 0), 3, cv2.LINE_AA)
 
-  # # displaying the frame with fps
-  # cv2.imshow('frame', gray)
-  # # -- end show fps
+  # displaying the frame with fps
+  cv2.imshow('frame', gray)
+  # -- end show fps
 
-  # import time
-  # fps_end_time = time.time()
-  # time_diff = fps_end_time - fps_start_time
-  # fps = 1/(time_diff)
-  # fps_start_time = fps_end_time
-  # fps_text = "FPS: {:.2f}".format(fps)
-  # cv2.putText(img, fps_text, (5,130), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,255), 1)
-  # cv2.imshow('frame', img)
+  import time
+  fps_end_time = time.time()
+  time_diff = fps_end_time - fps_start_time
+  fps = 1/(time_diff)
+  fps_start_time = fps_end_time
+  fps_text = "FPS: {:.2f}".format(fps)
+  cv2.putText(img, fps_text, (5,130), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,255), 1)
+  cv2.imshow('frame', img)
 
   for face in faces:
     x1,y1 = face.left(),face.top()
@@ -159,15 +159,30 @@ while True:
     myPoints = []
     # print(landmarks)
 
+    # bibir
+    # atas: 49, 50, 51, 52, 53, 54, 55, 65, 64, 63, 62, 61
+    # bawah: 55, 56, 57, 58, 59, 60, 49, 61, 68, 67, 66, 65
+
+    upperLip = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 56, 66, 67]
     # for n in range(68):
     for n in range(19):
+      print('range ', n)
       x = landmarks.part(n).x
       y = landmarks.part(n).y
       myPoints.append([x,y])
+      # test split bibir atas bawah
+      # if n in upperLip:
+      #   print('upperLip ', n)
+      #   myPoints.append([x,y])
+
+
 
     myPoints = np.array(myPoints)
     # imgLips = createBox(img,myPoints[48:61],3,masked=True,cropped=False)
-    imgLips = createBox(img,myPoints[0:19],0,masked=True,cropped=False)
+    # imgLips = createBox(img,myPoints[0:19],0,masked=True,cropped=False)
+    imgLips = createBox(img,myPoints[0:19],3,masked=True,cropped=False)
+    # # test split bibir atas bawah
+    # imgLips = createBox(img,myPoints[0:68],3,masked=True,cropped=False)
 
     imgColorLips = np.zeros_like(imgLips)
     b = cv2.getTrackbarPos('Blue','makeup')
